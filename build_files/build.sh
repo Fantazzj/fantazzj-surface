@@ -16,8 +16,6 @@ cp -avf "/ctx/system_files"/. /
 dnf5 install -y tmux
 
 # install surface-kernel
-wget -O /etc/yum.repos.d/linux-surface.repo \
-    https://pkg.surfacelinux.com/fedora/linux-surface.repo
 wget https://github.com/linux-surface/linux-surface/releases/download/silverblue-20201215-1/kernel-20201215-1.x86_64.rpm
 rpm-ostree override replace ./*.rpm \
 	--remove kernel-core \
@@ -29,7 +27,6 @@ rpm-ostree override replace ./*.rpm \
 	--install iptsd \
         --install libwacom-surface \
         --install libwacom-surface-data
-
 
 # Use a COPR Example:
 #
