@@ -15,6 +15,11 @@ cp -avf "/ctx/system_files"/. /
 # this installs a package from fedora repos
 dnf5 install -y tmux
 
+# install surface-kernel
+dnf5 config-manager addrepo -y --from-repofile=https://pkg.surfacelinux.com/fedora/linux-surface.repo
+dnf5 install -y --allowerasing kernel-surface iptsd libwacom-surface 
+systemctl enable linux-surface-default-watchdog.path
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
