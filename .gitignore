@@ -1,4 +1,5 @@
 cosign.key
+cosign.exe
 _build_*
 output
 _build-*/**
