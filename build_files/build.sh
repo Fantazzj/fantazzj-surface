@@ -7,23 +7,14 @@ cp -avf "/ctx/system_files"/. /
 
 ### Install packages
 
-# Packages can be installed from any enabled yum repo on the image.
-# RPMfusion repos are available by default in ublue main images
-# List of rpmfusion packages can be found here:
-# https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
-
-# install surface-kernel
+# Install surface-kernel
 dnf5 config-manager -y \
     addrepo --from-repofile=https://pkg.surfacelinux.com/fedora/linux-surface.repo
-dnf5 install -y --allowerasing kernel-surface iptsd libwacom-surface
+dnf5 -y remove --no-autoremove kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-tools kernel-tools-libs zram-generator-defaults
+rm -rf /boot/* /usr/lib/modules/* /lib/modules/*
+dnf5 -y --setopt=tsflags=noscripts install kernel-surface
+dnf5 -y install --allowerasing iptsd libwacom-surface
 
-# Use a COPR Example:
-#
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
-# Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
-
-#### Example for enabling a System Unit File
+# Enabling a System Unit Files
 
 systemctl enable podman.socket
