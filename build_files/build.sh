@@ -10,38 +10,10 @@ cp -avf "/ctx/system_files"/. /
 # Install surface-kernel
 curl -Lo /etc/yum.repos.d/linux-surface.repo https://pkg.surfacelinux.com/fedora/linux-surface.repo 
 
-#dnf5 -y download --destdir=/tmp/kernel-rpms \
-#  kernel-surface \
-#  kernel-surface-core \
-#  kernel-surface-modules \
-#  kernel-surface-modules-core \
-#  kernel-surface-modules-extra \
-#  kernel-surface-devel-matched \
-#  kernel-surface-default-watchdog \
-#  kernel-uki-virt \
-#  libwacom-surface \
-#  libwacom-surface-data \
-#  iptsd
-
-#rpm-ostree override replace \
-#  --experimental \
-#  --remove kernel \
-#  --remove kernel-core \
-#  --remove kernel-modules \
-#  --remove kernel-modules-core \
-#  --remove kernel-modules-extra \
-#  --remove kernel-devel-matched \
-#  --remove libwacom \
-#  --remove libwacom-data \
-#  /tmp/kernel-rpms/kernel-surface-*.rpm \
-#  /tmp/kernel-rpms/libwacom-surface*.rpm \
-#  /tmp/kernel-rpms/iptsd*.rpm
-
 dnf5 -y remove kernel*
 dnf5 -y install --allowerasing --setopt=tsflags=noscripts \
   kernel-surface \
   kernel-surface-devel \
-  iptsd \
   libwacom-surface
 
 KERNEL_SUFFIX="surface"
